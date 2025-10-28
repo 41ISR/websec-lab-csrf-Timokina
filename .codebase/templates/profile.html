@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="user-info">
+    <h2>Профиль пользователя {{ user.username }}</h2>
+    <p><strong>Email:</strong> {{ user.email or 'Не указан' }}</p>
+    <p><strong>Телефон:</strong> {{ user.phone or 'Не указан' }}</p>
+    <p><strong>Адрес:</strong> {{ user.address or 'Не указан' }}</p>
+    <p><strong>Баланс:</strong> {{ user.balance }} руб.</p>
+    <p><strong>Статус:</strong> {{ user.status }}</p>
+    <p><strong>2FA:</strong> {{ 'Включена' if user.two_fa_enabled else 'Выключена' }}</p>
+    <p><strong>API ключ:</strong> {{ user.api_key or 'Не сгенерирован' }}</p>
+</div>
+
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+    <div>
+        <h3>Быстрые действия</h3>
+        
+        <form action="{{ url_for('update_profile') }}" method="post" style="margin: 10px 0;">
+            <input type="email" name="email" placeholder="Новый email" required>
+            <button type="submit">Сменить email</button>
+        </form>
+
+        <form action="{{ url_for('update_preferences') }}" method="post" style="margin: 10px 0;">
+            <select name="status">
+                <option value="standard">Standard</option>
+                <option value="premium">Premium</option>
+                <option value="vip">VIP</option>
+            </select>
+            <button type="submit">Сменить статус</button>
+        </form>
+
+        <form action="{{ url_for('transfer') }}" method="post" style="margin: 10px 0;">
+            <input type="number" name="amount" placeholder="Сумма" step="0.01" required>
+            <input type="text" name="target_user" placeholder="Получатель" required>
+            <input type="text" name="comment" placeholder="Комментарий">
+            <button type="submit">Перевести</button>
+        </form>
+
+        <form action="{{ url_for('toggle_2fa') }}" method="post" style="margin: 10px 0;">
+            <button type="submit">Включить/Выключить 2FA</button>
+        </form>
+    </div>
+
+    <div>
+        <h3>История операций</h3>
+        {% for transaction in transactions %}
+            <div class="transaction">
+                <strong>{{ transaction.type }}</strong><br>
+                {% if transaction.amount %}
+                    Сумма: {{ transaction.amount }} руб.<br>
+                {% endif %}
+                {{ transaction.description }}<br>
+                <small>{{ transaction.timestamp }}</small>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
